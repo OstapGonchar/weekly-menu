@@ -1,0 +1,8 @@
+.day-table-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.day-table-container > * {
+    width: 100%;
+}
