@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Day } from './day';
 
 @Component({
   selector: 'app-day-table',
@@ -6,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./day-table.component.css']
 })
 export class DayTableComponent implements OnInit {
+  day: Day = new Day;
 
-  constructor() { }
+  constructor() {
+    this.day.breakfast = `To Eat for
+    breakfast`;
+    this.day.lunch = `To Eat for
+    lunch`;
+    this.day.dinner = `To Eat for
+    dinner`;
+  }
 
   ngOnInit() {
   }

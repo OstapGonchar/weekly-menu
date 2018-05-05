@@ -1,15 +1,17 @@
 <div class="day-table-container">
   <mat-form-field>
-    <input matInput placeholder="Input" type="date">
+    <input matInput placeholder="Day Of Week" type="date">
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
+    <textarea matInput placeholder="Breakfast">{{day.breakfast}}</textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
+    <textarea matInput placeholder="Lunch">{{day.lunch}}</textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Dinner">{{day.dinner}}</textarea>
   </mat-form-field>
 </div>

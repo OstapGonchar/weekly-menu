@@ -7,6 +7,7 @@ import { Component, OnDestroy } from '@angular/core';
 })
 export class AppComponent implements OnDestroy {
   title = 'Weekly Menu';
+  selectedWeek = 'option2';
 
   constructor() {
   }
