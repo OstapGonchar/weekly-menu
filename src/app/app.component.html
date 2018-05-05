@@ -10,15 +10,16 @@
 
   <mat-sidenav-container>
     <mat-sidenav #snav [mode]="over">
-      <mat-list>
-        <mat-list-item>30.04.2018 - 06.05.2018</mat-list-item>
-        <mat-list-item>07.05.2018 - 13.05.2018</mat-list-item>
-        <mat-list-item>14.05.2016 - 20.05.2018</mat-list-item>
-      </mat-list>
+      <mat-nav-list>
+        <mat-list-item role="listitem" *ngFor="let weekDesc of weekDescs">
+          <button mat-raised-button (click)="showInfo(weekDesc.id)">{{ weekDesc.desc }}</button>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <mat-grid-list cols="7" rowHeight="1:2">
+      <h3>Selected Week: {{ week.desc }}</h3>
+      <mat-grid-list [cols]="mobileQuery.matches ? 1 : 7" [rowHeight]="mobileQuery.matches ? '1:1' : '1:1.6'">
         <mat-grid-tile>
           <app-day-table [(day)]="week.monday"></app-day-table>
         </mat-grid-tile>
