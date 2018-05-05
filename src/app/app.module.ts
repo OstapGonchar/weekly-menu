@@ -13,7 +13,9 @@ import {
   MatToolbarModule,
   MatNavList,
   MatListModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DayTableComponent } from './day-table/day-table.component';
@@ -37,7 +39,9 @@ import { DayTableComponent } from './day-table/day-table.component';
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

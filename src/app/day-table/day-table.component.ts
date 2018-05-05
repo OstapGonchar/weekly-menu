@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Day } from './day';
 
 @Component({
@@ -7,15 +7,11 @@ import { Day } from './day';
   styleUrls: ['./day-table.component.css']
 })
 export class DayTableComponent implements OnInit {
+  @Input()
   day: Day = new Day;
+  @Output() dayChange = new EventEmitter<Day>();
 
   constructor() {
-    this.day.breakfast = `To Eat for
-    breakfast`;
-    this.day.lunch = `To Eat for
-    lunch`;
-    this.day.dinner = `To Eat for
-    dinner`;
   }
 
   ngOnInit() {

@@ -1,17 +1,18 @@
 <div class="day-table-container">
   <mat-form-field>
-    <input matInput placeholder="Day Of Week" type="date">
+    <input matInput [matDatepicker]="picker" placeholder="{{day.dayOfWeek}}" [value]="day.date" readonly>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Breakfast">{{day.breakfast}}</textarea>
+    <textarea matInput placeholder="Breakfast" [(ngModel)]="day.breakfast"></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Lunch">{{day.lunch}}</textarea>
+    <textarea matInput placeholder="Lunch" [(ngModel)]="day.lunch"></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Dinner">{{day.dinner}}</textarea>
+    <textarea matInput placeholder="Dinner" [(ngModel)]="day.dinner"></textarea>
   </mat-form-field>
 </div>

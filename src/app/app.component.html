@@ -11,42 +11,34 @@
   <mat-sidenav-container>
     <mat-sidenav #snav [mode]="over">
       <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
+        <mat-list-item>30.04.2018 - 06.05.2018</mat-list-item>
+        <mat-list-item>07.05.2018 - 13.05.2018</mat-list-item>
+        <mat-list-item>14.05.2016 - 20.05.2018</mat-list-item>
       </mat-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-form-field>
-            <mat-select [(value)]="selectedWeek">
-              <mat-option>None</mat-option>
-              <mat-option value="option1">30.04.2018 - 06.05.2018</mat-option>
-              <mat-option value="option2">07.05.2018 - 13.05.2018</mat-option>
-              <mat-option value="option3">14.05.2016 - 20.05.2018</mat-option>
-            </mat-select>
-          </mat-form-field>
       <mat-grid-list cols="7" rowHeight="1:2">
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [(day)]="week.monday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.tuesday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.wednesday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.thursday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.friday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.saturday"></app-day-table>
         </mat-grid-tile>
         <mat-grid-tile>
-          <app-day-table></app-day-table>
+          <app-day-table [day]="week.sunday"></app-day-table>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-sidenav-content>
