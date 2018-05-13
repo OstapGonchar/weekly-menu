@@ -38,4 +38,16 @@ export class WeeklyMenuService {
   public getCurrentWeek(): Observable<Week> {
     return this.http.get<Week>('/week/current');
   }
+
+  public addExtra(): void {
+    this.http.get('/week/add-extra')
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
+  }
 }

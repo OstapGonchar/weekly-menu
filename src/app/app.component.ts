@@ -43,6 +43,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.weeklyMenuService.save(this.week);
   }
 
+  addExtra() {
+    this.weeklyMenuService.addExtra();
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

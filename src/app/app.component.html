@@ -5,7 +5,7 @@
     <span>Ostap Gonchar</span>
   </mat-toolbar>
 
-  <mat-grid-list [cols]=3 rowHeight="50px">
+  <mat-grid-list [cols]=4 rowHeight="50px">
     <mat-grid-tile>
       <mat-form-field>
         <mat-select [ngModel]="selectedWeekId" (ngModelChange)="showInfo($event)">
@@ -17,6 +17,9 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <h3 *ngIf="week != undefined">Selected Week: {{ week.desc }}</h3>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-button color="primary" (click)="addExtra()">Add One More</button>
     </mat-grid-tile>
     <mat-grid-tile>
       <button mat-button color="primary" (click)="save()">Save</button>
