@@ -16,14 +16,14 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
-      <h3>Selected Week: {{ week.desc }}</h3>
+      <h3 *ngIf="week != undefined">Selected Week: {{ week.desc }}</h3>
     </mat-grid-tile>
     <mat-grid-tile>
       <button mat-button color="primary" (click)="save()">Save</button>
     </mat-grid-tile>
   </mat-grid-list>
 
-  <mat-grid-list [cols]="mobileQuery.matches ? 1 : 7" [rowHeight]="mobileQuery.matches ? '1:1' : '1:1.6'">
+  <mat-grid-list *ngIf="week != undefined" [cols]="mobileQuery.matches ? 1 : 7" [rowHeight]="mobileQuery.matches ? '1:1' : '1:1.6'">
     <mat-grid-tile>
       <app-day-table [(day)]="week.monday"></app-day-table>
     </mat-grid-tile>

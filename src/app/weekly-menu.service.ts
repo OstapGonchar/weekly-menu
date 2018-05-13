@@ -4,7 +4,6 @@ import { Week } from './week';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -17,7 +16,15 @@ export class WeeklyMenuService {
   constructor(private http: HttpClient) { }
 
   save(week: Week): void {
-    this.http.post<Week>('week', week, httpOptions);
+    this.http.post('/week', week, httpOptions)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
   }
 
   public getWeekDescs(): Observable<Array<WeekDesc>> {
@@ -25,10 +32,10 @@ export class WeeklyMenuService {
   }
 
   public getWeek(id: number): Observable<Week> {
-    return this.http.get<Week>(`week/${id}`);
+    return this.http.get<Week>(`/week/${id}`);
   }
 
   public getCurrentWeek(): Observable<Week> {
-    return this.http.get<Week>('week/current');
+    return this.http.get<Week>('/week/current');
   }
 }
