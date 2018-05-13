@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { WEEK_1 } from './mock-data';
 import { Week } from './week';
 import { WeeklyMenuService } from './weekly-menu.service';
 import { WeekDesc } from './week-desc';
@@ -14,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   title = 'Weekly Menu';
   week: Week;
+  selectedWeekId: number;
   weekDescs: Array<WeekDesc> = [];
 
   private _mobileQueryListener: () => void;
@@ -25,12 +25,22 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.weekDescs = this.weeklyMenuService.getWeekDescs();
-    this.week = this.weeklyMenuService.getCurrentWeek();
+    this.weeklyMenuService.getWeekDescs()
+      .subscribe(weekDescs => this.weekDescs = weekDescs);
+    this.weeklyMenuService.getCurrentWeek()
+      .subscribe(week => {
+        this.week = week;
+        this.selectedWeekId = this.week.id;
+      });
   }
 
   showInfo(id: number) {
-    this.week = this.weeklyMenuService.getWeek(id);
+    this.weeklyMenuService.getWeek(id)
+      .subscribe(week => this.week = week);
+  }
+
+  save() {
+    this.weeklyMenuService.save(this.week);
   }
 
   ngOnDestroy(): void {

@@ -1,29 +1,34 @@
 import { Injectable } from '@angular/core';
 import { WeekDesc } from './week-desc';
-import { WEEK_DESCS, WEEK_1, WEEK_2, WEEK_3 } from './mock-data';
 import { Week } from './week';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeeklyMenuService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public getWeekDescs(): Array<WeekDesc> {
-    return WEEK_DESCS;
+  save(week: Week): void {
+    this.http.post<Week>('week', week, httpOptions);
   }
 
-  public getWeek(id: number): Week {
-    switch (id) {
-      case 1: return WEEK_1;
-      case 2: return WEEK_2;
-      case 3: return WEEK_3;
-      default: return WEEK_1;
-    }
+  public getWeekDescs(): Observable<Array<WeekDesc>> {
+    return this.http.get<Array<WeekDesc>>('/week/week-desc');
   }
 
-  public getCurrentWeek(): Week {
-    return WEEK_1;
+  public getWeek(id: number): Observable<Week> {
+    return this.http.get<Week>(`week/${id}`);
+  }
+
+  public getCurrentWeek(): Observable<Week> {
+    return this.http.get<Week>('week/current');
   }
 }

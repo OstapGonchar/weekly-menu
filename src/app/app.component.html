@@ -1,47 +1,49 @@
 <div>
-  <mat-toolbar color="accent" role="header">
-    <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+  <mat-toolbar color="accent" role="header">>
     <h1>{{title}}</h1>
     <span class="fill-remaining-space"></span>
     <span>Ostap Gonchar</span>
   </mat-toolbar>
 
-  <mat-sidenav-container>
-    <mat-sidenav #snav [mode]="over">
-      <mat-nav-list>
-        <mat-list-item role="listitem" *ngFor="let weekDesc of weekDescs">
-          <button mat-raised-button (click)="showInfo(weekDesc.id)">{{ weekDesc.desc }}</button>
-        </mat-list-item>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
+  <mat-grid-list [cols]=3 rowHeight="50px">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-select [ngModel]="selectedWeekId" (ngModelChange)="showInfo($event)">
+          <mat-option *ngFor="let weekDesc of weekDescs" [value]="weekDesc.id">
+            {{ weekDesc.desc }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
       <h3>Selected Week: {{ week.desc }}</h3>
-      <mat-grid-list [cols]="mobileQuery.matches ? 1 : 7" [rowHeight]="mobileQuery.matches ? '1:1' : '1:1.6'">
-        <mat-grid-tile>
-          <app-day-table [(day)]="week.monday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.tuesday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.wednesday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.thursday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.friday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.saturday"></app-day-table>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-day-table [day]="week.sunday"></app-day-table>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-button color="primary" (click)="save()">Save</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list [cols]="mobileQuery.matches ? 1 : 7" [rowHeight]="mobileQuery.matches ? '1:1' : '1:1.6'">
+    <mat-grid-tile>
+      <app-day-table [(day)]="week.monday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.tuesday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.wednesday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.thursday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.friday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.saturday"></app-day-table>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-day-table [day]="week.sunday"></app-day-table>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
