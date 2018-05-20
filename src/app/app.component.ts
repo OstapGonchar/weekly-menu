@@ -15,6 +15,8 @@ export class AppComponent implements OnInit, OnDestroy {
   week: Week;
   selectedWeekId: number;
   weekDescs: Array<WeekDesc> = [];
+  message = '';
+  isSuccess = false;
 
   private _mobileQueryListener: () => void;
 
@@ -25,8 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.weeklyMenuService.getWeekDescs()
-      .subscribe(weekDescs => this.weekDescs = weekDescs);
+    this.loadWeekDescs();
     this.weeklyMenuService.getCurrentWeek()
       .subscribe(week => {
         this.week = week;
@@ -34,20 +35,62 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
+  loadWeekDescs(): any {
+    this.weeklyMenuService.getWeekDescs()
+      .subscribe(weekDescs => this.weekDescs = weekDescs);
+  }
+
   showInfo(id: number) {
     this.weeklyMenuService.getWeek(id)
       .subscribe(week => this.week = week);
   }
 
+  delete() {
+    this.weeklyMenuService.delete(this.week.id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.refresh();
+        },
+        err => {
+          console.log('Error occured');
+          this.refresh();
+        }
+      );
+  }
+
   save() {
-    this.weeklyMenuService.save(this.week);
+    this.weeklyMenuService.save(this.week)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.displaySuccess('Successfully saved');
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
+  }
+
+  private displaySuccess(message: string) {
+    this.message = message;
+    this.isSuccess = true;
+    setTimeout(() => {
+      this.isSuccess = false;
+      this.message = '';
+    }, 1000);
   }
 
   addExtra() {
     this.weeklyMenuService.addExtra();
+    this.refresh();
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

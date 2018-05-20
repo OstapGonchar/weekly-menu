@@ -20,9 +20,11 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <button mat-button color="primary" (click)="addExtra()">Add One More</button>
+      <button mat-button color="primary" (click)="delete()">Delete</button>
+      <button mat-button color="primary" (click)="save()">Save</button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <button mat-button color="primary" (click)="save()">Save</button>
+      <span style="color:greenyellow;font-weight: bold" *ngIf="isSuccess"><h2>{{message}}</h2></span>
     </mat-grid-tile>
   </mat-grid-list>
 

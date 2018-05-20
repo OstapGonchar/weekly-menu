@@ -15,16 +15,8 @@ export class WeeklyMenuService {
 
   constructor(private http: HttpClient) { }
 
-  save(week: Week): void {
-    this.http.post('/week', week, httpOptions)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log('Error occured');
-        }
-      );
+  save(week: Week): Observable<any> {
+    return this.http.post('/week', week, httpOptions);
   }
 
   public getWeekDescs(): Observable<Array<WeekDesc>> {
@@ -37,6 +29,10 @@ export class WeeklyMenuService {
 
   public getCurrentWeek(): Observable<Week> {
     return this.http.get<Week>('/week/current');
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.http.delete(`/week/${id}`);
   }
 
   public addExtra(): void {
